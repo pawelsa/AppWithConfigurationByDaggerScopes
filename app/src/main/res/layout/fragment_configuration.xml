@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".screens.configuration.ConfigurationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/urlEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="url"
+        android:inputType="textUri" />
 
     <Button
-        android:id="@+id/to_login_button"
+        android:id="@+id/toLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Open login" />
 
-</FrameLayout>
+</LinearLayout>
