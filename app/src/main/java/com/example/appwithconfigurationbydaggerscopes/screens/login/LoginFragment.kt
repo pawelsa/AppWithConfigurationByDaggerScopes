@@ -1,21 +1,19 @@
 package com.example.appwithconfigurationbydaggerscopes.screens.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.ActivityScoped
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-    val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +32,7 @@ class LoginFragment : Fragment() {
             savedInstanceState
         )
         view.findViewById<Button>(R.id.to_home_button).setOnClickListener {
+            viewModel.onLoginClick()
             findNavController().navigate(R.id.homeFragment)
         }
     }
