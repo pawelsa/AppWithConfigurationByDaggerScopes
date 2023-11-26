@@ -7,6 +7,9 @@ import com.example.appwithconfigurationbydaggerscopes.data.usecase.ObserveMemory
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.SetupBaseUrlUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateActiveMemoryVariableUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateMemoryVariableUseCaseImpl
+import com.example.appwithconfigurationbydaggerscopes.domain.Settings
+import com.example.appwithconfigurationbydaggerscopes.domain.repository.ActiveMemoryRepository
+import com.example.appwithconfigurationbydaggerscopes.domain.repository.MemoryRepository
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.LoginUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.LogoutUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.ObserveActiveMemoryVariableUseCase
@@ -14,33 +17,45 @@ import com.example.appwithconfigurationbydaggerscopes.domain.usecase.ObserveMemo
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.SetupBaseUrlUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.UpdateActiveMemoryVariableUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.UpdateMemoryVariableUseCase
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UseCaseModule {
+object UseCaseModule {
 
-    @Binds
-    abstract fun bindsLoginUseCase(loginUseCase: LoginUseCaseImpl): LoginUseCase
+    @Provides
+    @Singleton
+    fun providesLoginUseCase(): LoginUseCase = LoginUseCaseImpl()
 
-    @Binds
-    abstract fun bindsLogoutUseCase(logoutUseCase: LogoutUseCaseImpl): LogoutUseCase
+    @Provides
+    @Singleton
+    fun providesLogoutUseCase(): LogoutUseCase = LogoutUseCaseImpl()
 
-    @Binds
-    abstract fun bindsSetupBaseUrlUseCase(setupBaseUrlUseCase: SetupBaseUrlUseCaseImpl): SetupBaseUrlUseCase
+    @Provides
+    @Singleton
+    fun providesSetupBaseUrlUseCase(settings: Settings): SetupBaseUrlUseCase = SetupBaseUrlUseCaseImpl(settings)
 
-    @Binds
-    abstract fun bindsUpdateActiveMemoryVariableUseCase(updateActiveMemoryVariableUseCase: UpdateActiveMemoryVariableUseCaseImpl): UpdateActiveMemoryVariableUseCase
+    @Provides
+    @Singleton
+    fun providesUpdateActiveMemoryVariableUseCase(activeMemoryRepository: ActiveMemoryRepository): UpdateActiveMemoryVariableUseCase =
+        UpdateActiveMemoryVariableUseCaseImpl(activeMemoryRepository)
 
-    @Binds
-    abstract fun bindsUpdateMemoryVariableUseCase(updateMemoryVariableUseCase: UpdateMemoryVariableUseCaseImpl): UpdateMemoryVariableUseCase
+    @Provides
+    @Singleton
+    fun providesUpdateMemoryVariableUseCase(memoryRepository: MemoryRepository): UpdateMemoryVariableUseCase =
+        UpdateMemoryVariableUseCaseImpl(memoryRepository)
 
-    @Binds
-    abstract fun bindsObserveActiveMemoryVariableUseCase(observeActiveMemoryVariableUseCase: ObserveActiveMemoryVariableUseCaseImpl): ObserveActiveMemoryVariableUseCase
+    @Provides
+    @Singleton
+    fun providesObserveActiveMemoryVariableUseCase(activeMemoryRepository: ActiveMemoryRepository): ObserveActiveMemoryVariableUseCase =
+        ObserveActiveMemoryVariableUseCaseImpl(activeMemoryRepository)
 
-    @Binds
-    abstract fun bindsObserveMemoryVariableUseCase(observeMemoryVariableUseCase: ObserveMemoryVariableUseCaseImpl): ObserveMemoryVariableUseCase
+    @Provides
+    @Singleton
+    fun providesObserveMemoryVariableUseCase(memoryRepository: MemoryRepository): ObserveMemoryVariableUseCase =
+        ObserveMemoryVariableUseCaseImpl(memoryRepository)
 }
