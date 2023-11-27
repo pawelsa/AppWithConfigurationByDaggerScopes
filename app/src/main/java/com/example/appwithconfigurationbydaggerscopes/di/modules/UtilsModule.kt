@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.di
+package com.example.appwithconfigurationbydaggerscopes.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -9,10 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
+import com.example.appwithconfigurationbydaggerscopes.di.managers.LoggedInUserComponentManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
+    @Inject
+    lateinit var loggedInUserComponentManager: LoggedInUserComponentManager
+
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(

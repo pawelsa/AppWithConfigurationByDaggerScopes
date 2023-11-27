@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.di
+package com.example.appwithconfigurationbydaggerscopes.di.modules
 
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.LoginUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.LogoutUseCaseImpl
@@ -7,6 +7,7 @@ import com.example.appwithconfigurationbydaggerscopes.data.usecase.ObserveMemory
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.SetupBaseUrlUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateActiveMemoryVariableUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateMemoryVariableUseCaseImpl
+import com.example.appwithconfigurationbydaggerscopes.di.managers.LoggedInUserComponentManager
 import com.example.appwithconfigurationbydaggerscopes.domain.Settings
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.ActiveMemoryRepository
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.MemoryRepository
@@ -26,14 +27,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
-
-    @Provides
-    @Singleton
-    fun providesLoginUseCase(): LoginUseCase = LoginUseCaseImpl()
-
-    @Provides
-    @Singleton
-    fun providesLogoutUseCase(): LogoutUseCase = LogoutUseCaseImpl()
 
     @Provides
     @Singleton
@@ -58,4 +51,14 @@ object UseCaseModule {
     @Singleton
     fun providesObserveMemoryVariableUseCase(memoryRepository: MemoryRepository): ObserveMemoryVariableUseCase =
         ObserveMemoryVariableUseCaseImpl(memoryRepository)
+
+
+    @Provides
+    @Singleton
+    fun providesLoginUseCase(): LoginUseCase = LoginUseCaseImpl()
+
+    @Provides
+    @Singleton
+    fun providesLogoutUseCase(loggedInUserComponentManager: LoggedInUserComponentManager): LogoutUseCase =
+        LogoutUseCaseImpl(loggedInUserComponentManager)
 }
