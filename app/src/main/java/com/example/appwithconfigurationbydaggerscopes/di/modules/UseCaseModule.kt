@@ -21,44 +21,44 @@ import com.example.appwithconfigurationbydaggerscopes.domain.usecase.UpdateMemor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object UseCaseModule {
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesSetupBaseUrlUseCase(settings: Settings): SetupBaseUrlUseCase = SetupBaseUrlUseCaseImpl(settings)
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesUpdateActiveMemoryVariableUseCase(activeMemoryRepository: ActiveMemoryRepository): UpdateActiveMemoryVariableUseCase =
         UpdateActiveMemoryVariableUseCaseImpl(activeMemoryRepository)
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesUpdateMemoryVariableUseCase(memoryRepository: MemoryRepository): UpdateMemoryVariableUseCase =
         UpdateMemoryVariableUseCaseImpl(memoryRepository)
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesObserveActiveMemoryVariableUseCase(activeMemoryRepository: ActiveMemoryRepository): ObserveActiveMemoryVariableUseCase =
         ObserveActiveMemoryVariableUseCaseImpl(activeMemoryRepository)
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesObserveMemoryVariableUseCase(memoryRepository: MemoryRepository): ObserveMemoryVariableUseCase =
         ObserveMemoryVariableUseCaseImpl(memoryRepository)
 
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesLoginUseCase(): LoginUseCase = LoginUseCaseImpl()
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun providesLogoutUseCase(loggedInUserComponentManager: LoggedInUserComponentManager): LogoutUseCase =
         LogoutUseCaseImpl(loggedInUserComponentManager)
 }

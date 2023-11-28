@@ -1,36 +1,25 @@
 package com.example.appwithconfigurationbydaggerscopes.di.modules
 
-import com.example.appwithconfigurationbydaggerscopes.di.entry_point.ActiveMemoryEntryPoint
-import com.example.appwithconfigurationbydaggerscopes.di.entry_point.MemoryEntryPoint
-import com.example.appwithconfigurationbydaggerscopes.di.managers.LoggedInUserComponentManager
+import com.example.appwithconfigurationbydaggerscopes.data.repository.ActiveMemoryRepositoryImpl
+import com.example.appwithconfigurationbydaggerscopes.data.repository.MemoryRepositoryImpl
+import com.example.appwithconfigurationbydaggerscopes.di.components.LoggedInUserComponent
+import com.example.appwithconfigurationbydaggerscopes.di.scopes.LoggedInUserScope
+import com.example.appwithconfigurationbydaggerscopes.domain.Settings
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.ActiveMemoryRepository
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.MemoryRepository
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(LoggedInUserComponent::class)
 object MemoryModule {
 
     @Provides
-    @Singleton
-    fun providesActiveMemoryRepository(loggedInUserComponentManager: LoggedInUserComponentManager): ActiveMemoryRepository {
-        return EntryPoints.get(
-            loggedInUserComponentManager.loggedInUserComponent,
-            ActiveMemoryEntryPoint::class.java
-        ).getActiveMemoryRepository()
-    }
+    @LoggedInUserScope
+    fun providesActiveMemoryRepository(): ActiveMemoryRepository = ActiveMemoryRepositoryImpl()
 
     @Provides
-    @Singleton
-    fun providesMemoryRepository(loggedInUserComponentManager: LoggedInUserComponentManager): MemoryRepository {
-        return EntryPoints.get(
-            loggedInUserComponentManager.loggedInUserComponent,
-            MemoryEntryPoint::class.java
-        ).getMemoryRepository()
-    }
+    @LoggedInUserScope
+    fun providesMemoryRepository(settings: Settings): MemoryRepository = MemoryRepositoryImpl(settings)
 }

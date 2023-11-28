@@ -1,5 +1,6 @@
 package com.example.appwithconfigurationbydaggerscopes.di.managers
 
+import android.util.Log
 import com.example.appwithconfigurationbydaggerscopes.di.components.LoggedInUserComponent
 import javax.inject.Inject
 import javax.inject.Provider
@@ -14,6 +15,10 @@ class LoggedInUserComponentManager @Inject constructor(
         private set
 
     fun rebuildComponent() {
+        Log.e(
+            "LoggedInUserComponentManager",
+            "rebuildComponent"
+        )
         loggedInUserComponent = componentBuilder.get().build()
     }
 }
