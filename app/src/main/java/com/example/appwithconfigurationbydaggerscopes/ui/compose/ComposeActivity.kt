@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.compose
+package com.example.appwithconfigurationbydaggerscopes.ui.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,10 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.example.appwithconfigurationbydaggerscopes.compose.screens.configuration.ConfigurationPage
-import com.example.appwithconfigurationbydaggerscopes.compose.screens.home.HomePage
-import com.example.appwithconfigurationbydaggerscopes.compose.screens.login.LoginPage
-import com.example.appwithconfigurationbydaggerscopes.compose.ui.theme.AppWithConfigurationByDaggerScopesTheme
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.configuration.ConfigurationPage
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.home.HomePage
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.login.LoginPage
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.ui.theme.AppWithConfigurationByDaggerScopesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

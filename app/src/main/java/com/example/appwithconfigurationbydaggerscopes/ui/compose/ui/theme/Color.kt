@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.compose.ui.theme
+package com.example.appwithconfigurationbydaggerscopes.ui.compose.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

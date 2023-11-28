@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.xml
+package com.example.appwithconfigurationbydaggerscopes.ui.xml
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

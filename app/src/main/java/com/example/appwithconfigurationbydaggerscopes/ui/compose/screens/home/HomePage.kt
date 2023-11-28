@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.compose.screens.home
+package com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.appwithconfigurationbydaggerscopes.xml.screens.home_page.HomeViewModel
+import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.HomeViewModel
 
 @Composable
 fun HomePage(viewModel: HomeViewModel = hiltViewModel(), navController: NavController) {

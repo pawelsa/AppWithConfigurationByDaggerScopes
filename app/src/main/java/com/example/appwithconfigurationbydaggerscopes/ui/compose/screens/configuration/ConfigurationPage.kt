@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.compose.screens.configuration
+package com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.configuration
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -14,7 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.appwithconfigurationbydaggerscopes.xml.screens.configuration.ConfigurationViewModel
+import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.ConfigurationViewModel
 
 @Composable
 fun ConfigurationPage(viewModel: ConfigurationViewModel = hiltViewModel(), navController: NavController) {

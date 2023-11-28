@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.xml.screens.home_page
+package com.example.appwithconfigurationbydaggerscopes.ui.viewModels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
