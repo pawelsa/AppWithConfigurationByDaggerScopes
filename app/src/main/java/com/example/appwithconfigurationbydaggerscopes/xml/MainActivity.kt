@@ -1,7 +1,8 @@
-package com.example.appwithconfigurationbydaggerscopes
+package com.example.appwithconfigurationbydaggerscopes.xml
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appwithconfigurationbydaggerscopes.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

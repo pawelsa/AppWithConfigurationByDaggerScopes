@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.screens.home_page
+package com.example.appwithconfigurationbydaggerscopes.xml.screens.home_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
