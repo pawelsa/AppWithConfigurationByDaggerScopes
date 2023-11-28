@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.login.LoginFragment">
+    tools:context=".ui.xml.screens.login.LoginFragment">
 
     <Button
         android:id="@+id/to_home_button"

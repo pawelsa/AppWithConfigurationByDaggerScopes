@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/configurationFragment"
-        android:name="com.example.appwithconfigurationbydaggerscopes.screens.configuration.ConfigurationFragment"
+        android:name="com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.configuration.ConfigurationFragment"
         android:label="fragment_configuration"
         tools:layout="@layout/fragment_configuration">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.appwithconfigurationbydaggerscopes.screens.login.LoginFragment"
+        android:name="com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action

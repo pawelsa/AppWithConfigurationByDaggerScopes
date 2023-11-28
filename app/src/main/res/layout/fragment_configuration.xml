@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screens.configuration.ConfigurationFragment">
+    tools:context=".ui.xml.screens.configuration.ConfigurationFragment">
 
     <EditText
         android:id="@+id/urlEditText"

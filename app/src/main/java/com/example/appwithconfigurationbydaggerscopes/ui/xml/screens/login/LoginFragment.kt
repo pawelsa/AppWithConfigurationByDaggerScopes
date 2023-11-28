@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.screens.login
+package com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
+import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

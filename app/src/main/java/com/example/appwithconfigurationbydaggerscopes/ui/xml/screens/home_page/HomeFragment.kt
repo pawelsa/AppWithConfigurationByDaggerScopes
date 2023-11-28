@@ -1,4 +1,4 @@
-package com.example.appwithconfigurationbydaggerscopes.screens.home_page
+package com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.home_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
+import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
