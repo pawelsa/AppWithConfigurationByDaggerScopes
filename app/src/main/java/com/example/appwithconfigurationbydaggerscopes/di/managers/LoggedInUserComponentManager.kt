@@ -11,6 +11,13 @@ class LoggedInUserComponentManager @Inject constructor(
     private val componentBuilder: Provider<LoggedInUserComponent.Builder>
 ) {
 
+    init {
+        Log.w(
+            "LoggedInUserComponentManager",
+            "init ${this.hashCode()}"
+        )
+    }
+
     var loggedInUserComponent: LoggedInUserComponent = componentBuilder.get().build()
         private set
 
