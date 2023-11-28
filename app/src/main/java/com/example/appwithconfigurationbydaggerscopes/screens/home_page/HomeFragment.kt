@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by hiltNavGraphViewModels(R.id.homeFragment)
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +66,14 @@ class HomeFragment : Fragment() {
         }
         logoutButton.setOnClickListener {
             viewModel.onLogoutClick()
-            findNavController().navigate(R.id.configurationFragment)
+            findNavController().navigate(
+                R.id.configurationFragment,
+                null,
+                NavOptions.Builder().setPopUpTo(
+                    R.id.homeFragment,
+                    true
+                ).build()
+            )
         }
     }
 }

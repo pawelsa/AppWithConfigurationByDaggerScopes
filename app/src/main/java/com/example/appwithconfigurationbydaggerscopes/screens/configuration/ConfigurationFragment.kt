@@ -35,7 +35,9 @@ class ConfigurationFragment : Fragment() {
         )
         view.findViewById<Button>(R.id.toLoginButton).setOnClickListener {
             val editText = view.findViewById<EditText>(R.id.urlEditText)
-            viewModel.onBaseUrlConfirm(editText.text.toString())
+            if (editText.text.isNotBlank()) {
+                viewModel.onValueConfirm(editText.text.toString().toInt())
+            }
             val navController = findNavController()
             navController.navigate(R.id.loginFragment)
         }

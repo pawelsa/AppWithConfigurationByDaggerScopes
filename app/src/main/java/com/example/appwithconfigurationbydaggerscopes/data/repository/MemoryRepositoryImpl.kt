@@ -1,12 +1,14 @@
 package com.example.appwithconfigurationbydaggerscopes.data.repository
 
 import android.util.Log
+import com.example.appwithconfigurationbydaggerscopes.di.scopes.LoggedInUserScope
 import com.example.appwithconfigurationbydaggerscopes.domain.Settings
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.MemoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
+@LoggedInUserScope
 class MemoryRepositoryImpl @Inject constructor(private val settings: Settings) : MemoryRepository {
     init {
         Log.w(

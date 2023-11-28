@@ -1,26 +1,25 @@
-package com.example.appwithconfigurationbydaggerscopes.di
+package com.example.appwithconfigurationbydaggerscopes.di.modules
 
 import com.example.appwithconfigurationbydaggerscopes.data.repository.ActiveMemoryRepositoryImpl
 import com.example.appwithconfigurationbydaggerscopes.data.repository.MemoryRepositoryImpl
+import com.example.appwithconfigurationbydaggerscopes.di.components.LoggedInUserComponent
+import com.example.appwithconfigurationbydaggerscopes.di.scopes.LoggedInUserScope
 import com.example.appwithconfigurationbydaggerscopes.domain.Settings
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.ActiveMemoryRepository
 import com.example.appwithconfigurationbydaggerscopes.domain.repository.MemoryRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object RepositoryModule {
+@InstallIn(LoggedInUserComponent::class)
+object MemoryModule {
 
     @Provides
-    @Singleton
-    fun bindActiveMemoryRepository(): ActiveMemoryRepository = ActiveMemoryRepositoryImpl()
+    @LoggedInUserScope
+    fun providesActiveMemoryRepository(): ActiveMemoryRepository = ActiveMemoryRepositoryImpl()
 
     @Provides
-    @Singleton
-    fun bindMemoryRepository(settings: Settings): MemoryRepository = MemoryRepositoryImpl(settings)
-
+    @LoggedInUserScope
+    fun providesMemoryRepository(settings: Settings): MemoryRepository = MemoryRepositoryImpl(settings)
 }

@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
@@ -33,7 +35,14 @@ class LoginFragment : Fragment() {
         )
         view.findViewById<Button>(R.id.to_home_button).setOnClickListener {
             viewModel.onLoginClick()
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(
+                R.id.action_loginFragment_to_logged_in_navigation,
+                null,
+                NavOptions.Builder().setPopUpTo(
+                    R.id.configurationFragment,
+                    true
+                ).build()
+            )
         }
     }
 }
