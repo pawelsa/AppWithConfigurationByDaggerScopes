@@ -2,12 +2,13 @@ package com.example.appwithconfigurationbydaggerscopes.screens.configuration
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.appwithconfigurationbydaggerscopes.domain.usecase.SetupBaseUrlUseCase
+import com.example.appwithconfigurationbydaggerscopes.domain.usecase.SetupInitialValueUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ConfigurationViewModel @Inject constructor(private val setupBaseUrlUseCase: SetupBaseUrlUseCase) : ViewModel() {
+class ConfigurationViewModel @Inject constructor(private val setupInitialValueUseCase: SetupInitialValueUseCase) :
+    ViewModel() {
 
     init {
         Log.w(
@@ -16,8 +17,8 @@ class ConfigurationViewModel @Inject constructor(private val setupBaseUrlUseCase
         )
     }
 
-    fun onBaseUrlConfirm(baseUrl: String) {
-        setupBaseUrlUseCase.execute(baseUrl)
+    fun onValueConfirm(value: Int) {
+        setupInitialValueUseCase.execute(value)
     }
 
     override fun onCleared() {

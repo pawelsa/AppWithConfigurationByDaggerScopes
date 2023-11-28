@@ -4,7 +4,7 @@ import com.example.appwithconfigurationbydaggerscopes.data.usecase.LoginUseCaseI
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.LogoutUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.ObserveActiveMemoryVariableUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.ObserveMemoryVariableUseCaseImpl
-import com.example.appwithconfigurationbydaggerscopes.data.usecase.SetupBaseUrlUseCaseImpl
+import com.example.appwithconfigurationbydaggerscopes.data.usecase.SetupInitialValueUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateActiveMemoryVariableUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.data.usecase.UpdateMemoryVariableUseCaseImpl
 import com.example.appwithconfigurationbydaggerscopes.di.managers.LoggedInUserComponentManager
@@ -15,7 +15,7 @@ import com.example.appwithconfigurationbydaggerscopes.domain.usecase.LoginUseCas
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.LogoutUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.ObserveActiveMemoryVariableUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.ObserveMemoryVariableUseCase
-import com.example.appwithconfigurationbydaggerscopes.domain.usecase.SetupBaseUrlUseCase
+import com.example.appwithconfigurationbydaggerscopes.domain.usecase.SetupInitialValueUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.UpdateActiveMemoryVariableUseCase
 import com.example.appwithconfigurationbydaggerscopes.domain.usecase.UpdateMemoryVariableUseCase
 import dagger.Module
@@ -30,7 +30,8 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun providesSetupBaseUrlUseCase(settings: Settings): SetupBaseUrlUseCase = SetupBaseUrlUseCaseImpl(settings)
+    fun providesSetupBaseUrlUseCase(settings: Settings): SetupInitialValueUseCase =
+        SetupInitialValueUseCaseImpl(settings)
 
     @Provides
     @ViewModelScoped

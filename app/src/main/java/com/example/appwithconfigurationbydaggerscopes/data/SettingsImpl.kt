@@ -9,7 +9,6 @@ class SettingsImpl @Inject constructor(private val sharedPreferences: SharedPref
 
     companion object{
         const val VARIABLE = "variable"
-        const val BASE_URL = "baseUrl"
     }
 
     override var variable: Int
@@ -17,13 +16,6 @@ class SettingsImpl @Inject constructor(private val sharedPreferences: SharedPref
         set(value) {
             sharedPreferences.edit {
                 putInt(VARIABLE, value)
-            }
-        }
-    override var baseUrl: String
-        get() = sharedPreferences.getString(BASE_URL, "") ?: ""
-        set(value) {
-            sharedPreferences.edit {
-                putString(BASE_URL, value)
             }
         }
 }
