@@ -20,12 +20,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_loginFragment_to_logged_in_navigation"
+            app:destination="@id/logged_in_navigation" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.appwithconfigurationbydaggerscopes.screens.home_page.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+    <include app:graph="@navigation/logged_in_navigation" />
 </navigation>

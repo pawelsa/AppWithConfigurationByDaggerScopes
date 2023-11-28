@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.appwithconfigurationbydaggerscopes.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,9 +66,13 @@ class HomeFragment : Fragment() {
         }
         logoutButton.setOnClickListener {
             viewModel.onLogoutClick()
-            findNavController().popBackStack(
+            findNavController().navigate(
                 R.id.configurationFragment,
-                false
+                null,
+                NavOptions.Builder().setPopUpTo(
+                    R.id.homeFragment,
+                    true
+                ).build()
             )
         }
     }
