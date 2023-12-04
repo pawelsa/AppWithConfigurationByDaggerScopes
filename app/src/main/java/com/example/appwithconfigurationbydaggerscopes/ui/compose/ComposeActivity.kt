@@ -10,6 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.configuration.ConfigurationPage
 import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.home.HomePage
 import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.login.LoginPage
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.only_active_memory.OnlyActiveMemoryPage
+import com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.only_memory.OnlyMemoryPage
 import com.example.appwithconfigurationbydaggerscopes.ui.compose.ui.theme.AppWithConfigurationByDaggerScopesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +44,12 @@ class ComposeActivity : ComponentActivity() {
                             HomePage(
                                 navController = navController
                             )
+                        }
+                        composable("onlyMemory") {
+                            OnlyMemoryPage()
+                        }
+                        composable("onlyActiveMemory") {
+                            OnlyActiveMemoryPage()
                         }
                     }
                 }

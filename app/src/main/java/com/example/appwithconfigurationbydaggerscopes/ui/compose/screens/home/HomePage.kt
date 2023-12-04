@@ -34,6 +34,16 @@ fun HomePage(viewModel: HomeViewModel = hiltViewModel(), navController: NavContr
                 }
             }
             ElevatedButton(onClick = {
+                navController.navigate("onlyMemory")
+            }) {
+                Text("Open only memory page")
+            }
+            ElevatedButton(onClick = {
+                navController.navigate("onlyActiveMemory")
+            }) {
+                Text("Open only active memory page")
+            }
+            ElevatedButton(onClick = {
                 viewModel.onLogoutClick()
                 navController.navigate("configuration") {
                     this.popUpTo("home") {
