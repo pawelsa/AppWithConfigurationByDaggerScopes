@@ -88,14 +88,15 @@ Steps for creating a Hilt scope and component:
     }
   ```
 
-Now starts the more confusing part of the solution. As the documentation states:
-// todo wstawić fragment z dokumentacji o potrzebie użycia EntryPoints oraz o tym że jeśli chcemy zapamiętywać te
-zmienne to musimy je gdzieś zapisywać
-
-Let's start with EntryPoints (może jeszcze je tutaj opisać ?? ):
+Now we will need to access them. As this is a custom component, we cannot expect Dagger to know how it should access it.
+For that reason we need to use EntryPoints.
+The documentation
+says : `An entry point is the boundary where you can get Dagger-provided objects from code that cannot use Dagger to inject its dependencies.
+It is the point where code first enters into the graph of objects managed by Dagger.
+If you’re already familiar with Dagger components, an entry point is just an interface that the Hilt generated component will extend.`.
 
 ```kotlin
-  @EntryPoint /// we need to define that it is an entry points
+  @EntryPoint /// we need to define that it is an entry point
 @InstallIn(LoggedInUserComponent::class) /// we need to define which component it is connected with
 interface ActiveMemoryEntryPoint {
 
@@ -109,16 +110,20 @@ of puzzle that handles lifecycle of the instances created in our component.
 For that we will create a ComponentManager.
 
 ```kotlin
-@Singleton /// our manager will be a singleton, so that we can always access it. This is the place that manages the lifecycle of our component. We create and destroy it here. It is not automatic as Hilt provided components. Hilt does not know how long we want to keep the component alive.
+/// Our manager will be a singleton, so that we can always access it. This is the place that manages the lifecycle 
+/// of our component. We create and destroy it here. It is not automatic as Hilt provided components. 
+/// Hilt does not know how long we want to keep the component alive.
+@Singleton
 class LoggedInUserComponentManager @Inject constructor(
   private val componentBuilder: Provider<LoggedInUserComponent.Builder> /// we are provided with the builder created in earlier steps
 ) {
 
-  /// while our app does not need the component's dependencies it will be null, to save memory
-  /// at a point when the component will be requested for the first time, it will be saved here, for future usages, so that we do not create new instances of the component or its instances
+  /// When our app does not need the component's dependencies it will be null, to save memory.
+  /// At a point when the component will be requested for the first time, it will be saved here, for future usages, 
+  // so that we do not create new instances of the component or its instances
   private var _loggedInUserComponent: LoggedInUserComponent? = null
 
-  /// when we will need to obtain instances from our component, we will obtain it by creating it first, then saving it for future usages
+  /// here we are lazily creating an instance of component
   val loggedInUserComponent: LoggedInUserComponent
     get() {
       var loggedInUserComponent = _loggedInUserComponent
@@ -129,8 +134,9 @@ class LoggedInUserComponentManager @Inject constructor(
       return loggedInUserComponent
     }
 
-  /// at a point where user will logout, and the scope will be left we should remove the component, so that next time we will create new component and its instances.
-  /// we need to remember to properly discard all the dependencies that were created in the current component, as we can have memory leaks or not working correctly application
+  /// At a point where user will logout, and the scope will be left we should remove the component, so that next time we will create new component and its instances.
+  /// We need to remember to properly discard all the dependencies that were created in the current component, 
+  /// as we can have memory leaks or not correctly working application
   fun clearComponent() {
     _loggedInUserComponent = null
   }
@@ -163,8 +169,7 @@ The first question you may ask, why we use `@InstallIn(SingletonComponent::class
 for the app?
 
 The answer is few lines below.
-In our method `provideMemoryRepository`, we use only `@Provides` without `@Singleton` or `@LoggedInUserScope`. /// todo
-neither / nor
+In our method `provideMemoryRepository`, we use only `@Provides` without `@Singleton` or `@LoggedInUserScope`.
 This information tells us that, every time we will request `MemoryRepository` it will come from here.
 
 So, how many instances of memory repository will be created?
@@ -195,17 +200,12 @@ class LogoutUseCaseImpl @Inject constructor(private val loggedInUserComponentMan
 This way we created our custom component, that its lifecycle can be easily managed.
 
 There is one important thing to remember. When the component will be removed, all instances created by it, will still
-live,
-as long as they will be referenced in our code.
-We need to make sure that all the dependencies that use them, are also disposed, so at the point of running garbage
-collector
-they will be removed from the memory. In this application objects created in our scope are used by usecases, which are
-@ViewModelScoped.
+live, as long as they will be referenced in our code. We need to make sure that all the dependencies that use them,
+are also disposed, so at the point of running garbage collector they will be removed from the memory.
+In this application objects created in our scope are used by usecases, which are @ViewModelScoped.
 This means that at a point when viewmodels will be disposed, all usecases will be removed also. Which in result will
 free our component instances.
 
-// todo sprawdzić i opisać czy w jakiś scope'ach jak ViewModelScope można użyć @Singleton czy @ActivityScoped
-// todo poczyścić kod z niepotrzebnego raczej modułu usecaseów
 // todo usprawnić kod żeby był bardziej zgodny z dokumentacją, pokazać że nasze reposzytoria są reużywane
 
 
