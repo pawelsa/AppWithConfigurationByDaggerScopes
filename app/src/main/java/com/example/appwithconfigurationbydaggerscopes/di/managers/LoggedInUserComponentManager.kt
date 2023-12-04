@@ -18,14 +18,23 @@ class LoggedInUserComponentManager @Inject constructor(
         )
     }
 
-    var loggedInUserComponent: LoggedInUserComponent = componentBuilder.get().build()
-        private set
+    private var _loggedInUserComponent: LoggedInUserComponent? = null
 
-    fun rebuildComponent() {
+    val loggedInUserComponent: LoggedInUserComponent
+        get() {
+            var loggedInUserComponent = _loggedInUserComponent
+            if (loggedInUserComponent == null) {
+                loggedInUserComponent = componentBuilder.get().build()
+                _loggedInUserComponent = loggedInUserComponent
+            }
+            return loggedInUserComponent
+        }
+
+    fun clearComponent() {
         Log.e(
             "LoggedInUserComponentManager",
             "rebuildComponent"
         )
-        loggedInUserComponent = componentBuilder.get().build()
+        _loggedInUserComponent = null
     }
 }

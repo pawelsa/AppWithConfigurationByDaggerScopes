@@ -18,7 +18,7 @@ class LogoutUseCaseImpl @Inject constructor(private val loggedInUserComponentMan
     }
 
     override fun execute(): Boolean {
-        loggedInUserComponentManager.rebuildComponent()
+        loggedInUserComponentManager.clearComponent()
         return true
     }
 }
