@@ -9,5 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.home_page.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_onlyActiveMemoryFragment"
+            app:destination="@id/onlyActiveMemoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_onlyMemoryFragment"
+            app:destination="@id/onlyMemoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onlyActiveMemoryFragment"
+        android:name="com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.only_active_memory.OnlyActiveMemoryFragment"
+        android:label="OnlyActiveMemoryFragment" />
+    <fragment
+        android:id="@+id/onlyMemoryFragment"
+        android:name="com.example.appwithconfigurationbydaggerscopes.ui.xml.screens.only_memory.OnlyMemoryFragment"
+        android:label="OnlyMemoryFragment" />
 </navigation>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by hiltNavGraphViewModels(R.id.logged_in_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +42,8 @@ class HomeFragment : Fragment() {
         val memoryText = view.findViewById<TextView>(R.id.memoryCountText)
         val activeMemoryButton = view.findViewById<Button>(R.id.activeMemoryCountButton)
         val memoryButton = view.findViewById<Button>(R.id.memoryCountButton)
+        val onlyMemoryButton = view.findViewById<Button>(R.id.openMemoryPageButton)
+        val onlyActiveMemoryButton = view.findViewById<Button>(R.id.openActiveMemoryButton)
         val logoutButton = view.findViewById<Button>(R.id.logoutButton)
 
         lifecycleScope.launch {
@@ -64,6 +66,16 @@ class HomeFragment : Fragment() {
         }
         memoryButton.setOnClickListener {
             viewModel.onUpdateMemoryVariable()
+        }
+        onlyMemoryButton.setOnClickListener {
+            findNavController().navigate(
+                R.id.onlyMemoryFragment,
+            )
+        }
+        onlyActiveMemoryButton.setOnClickListener {
+            findNavController().navigate(
+                R.id.onlyActiveMemoryFragment,
+            )
         }
         logoutButton.setOnClickListener {
             viewModel.onLogoutClick()

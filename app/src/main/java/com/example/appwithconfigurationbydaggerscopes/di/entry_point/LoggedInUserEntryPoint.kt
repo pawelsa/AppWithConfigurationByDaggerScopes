@@ -1,5 +1,6 @@
 package com.example.appwithconfigurationbydaggerscopes.di.entry_point
 
+import android.util.Log
 import com.example.appwithconfigurationbydaggerscopes.data.repository.ActiveMemoryRepositoryImpl
 import com.example.appwithconfigurationbydaggerscopes.data.repository.MemoryRepositoryImpl
 import com.example.appwithconfigurationbydaggerscopes.di.components.LoggedInUserComponent
@@ -13,16 +14,16 @@ import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-@InstallIn(LoggedInUserComponent::class)
 @EntryPoint
+@InstallIn(LoggedInUserComponent::class)
 interface ActiveMemoryEntryPoint {
 
     fun getActiveMemoryRepository(): ActiveMemoryRepositoryImpl
 
 }
 
-@InstallIn(LoggedInUserComponent::class)
 @EntryPoint
+@InstallIn(LoggedInUserComponent::class)
 interface MemoryEntryPoint {
 
     fun getMemoryRepository(): MemoryRepositoryImpl
@@ -30,11 +31,15 @@ interface MemoryEntryPoint {
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object RepositoryEntryBridge {
+internal object RepositoryEntryPointsBridgeModule {
     @Provides
     internal fun provideMemoryRepository(
         loggedInUserComponentManager: LoggedInUserComponentManager
     ): MemoryRepository {
+        Log.w(
+            "RepositoryEntryPointsBridgeModule",
+            "obtaining memory repository from entrypoints"
+        )
         return EntryPoints
             .get(
                 loggedInUserComponentManager.loggedInUserComponent,
@@ -47,6 +52,10 @@ internal object RepositoryEntryBridge {
     internal fun provideActiveMemoryRepository(
         loggedInUserComponentManager: LoggedInUserComponentManager
     ): ActiveMemoryRepository {
+        Log.w(
+            "RepositoryEntryPointsBridgeModule",
+            "obtaining active memory repository from entrypoints"
+        )
         return EntryPoints
             .get(
                 loggedInUserComponentManager.loggedInUserComponent,

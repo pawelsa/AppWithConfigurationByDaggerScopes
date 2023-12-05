@@ -49,6 +49,18 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/openMemoryPageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open only memory" />
+
+    <Button
+        android:id="@+id/openActiveMemoryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open only active memory" />
+
+    <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

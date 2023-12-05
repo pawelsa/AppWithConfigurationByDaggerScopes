@@ -1,5 +1,6 @@
 package com.example.appwithconfigurationbydaggerscopes.di.modules
 
+import android.util.Log
 import com.example.appwithconfigurationbydaggerscopes.data.repository.ActiveMemoryRepositoryImpl
 import com.example.appwithconfigurationbydaggerscopes.data.repository.MemoryRepositoryImpl
 import com.example.appwithconfigurationbydaggerscopes.di.components.LoggedInUserComponent
@@ -17,9 +18,21 @@ object MemoryModule {
 
     @Provides
     @LoggedInUserScope
-    fun providesActiveMemoryRepository(): ActiveMemoryRepository = ActiveMemoryRepositoryImpl()
+    fun providesActiveMemoryRepository(): ActiveMemoryRepository {
+        Log.w(
+            "MemoryModule",
+            "providesActiveMemoryRepository"
+        )
+        return ActiveMemoryRepositoryImpl()
+    }
 
     @Provides
     @LoggedInUserScope
-    fun providesMemoryRepository(settings: Settings): MemoryRepository = MemoryRepositoryImpl(settings)
+    fun providesMemoryRepository(settings: Settings): MemoryRepository {
+        Log.w(
+            "MemoryModule",
+            "providesMemoryRepository"
+        )
+        return MemoryRepositoryImpl(settings)
+    }
 }
