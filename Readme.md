@@ -205,21 +205,3 @@ are also disposed, so at the point of running garbage collector they will be rem
 In this application objects created in our scope are used by usecases, which are @ViewModelScoped.
 This means that at a point when viewmodels will be disposed, all usecases will be removed also. Which in result will
 free our component instances.
-
-// todo usprawnić kod żeby był bardziej zgodny z dokumentacją, pokazać że nasze reposzytoria są reużywane
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
