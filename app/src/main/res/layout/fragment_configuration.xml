@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="url"
+        android:hint="Initial value"
         android:inputType="textUri" />
 
     <Button

@@ -1,6 +1,8 @@
 package com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.configuration
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
@@ -11,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -19,12 +22,19 @@ import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.Configuratio
 @Composable
 fun ConfigurationPage(viewModel: ConfigurationViewModel = hiltViewModel(), navController: NavController) {
     Scaffold {
-        Column(Modifier.padding(it)) {
+        Column(
+            Modifier.fillMaxSize().padding(it),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             var value by remember { mutableStateOf("") }
             TextField(
                 value = value,
                 onValueChange = { textValue ->
                     value = textValue
+                },
+                label = {
+                    Text("Initial value")
                 }
             )
             ElevatedButton(onClick = {

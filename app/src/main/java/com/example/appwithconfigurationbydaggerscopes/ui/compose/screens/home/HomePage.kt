@@ -1,7 +1,9 @@
 package com.example.appwithconfigurationbydaggerscopes.ui.compose.screens.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
@@ -9,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -17,7 +20,11 @@ import com.example.appwithconfigurationbydaggerscopes.ui.viewModels.HomeViewMode
 @Composable
 fun HomePage(viewModel: HomeViewModel = hiltViewModel(), navController: NavController) {
     Scaffold {
-        Column(Modifier.padding(it)) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(it),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             val memoryCount by viewModel.memoryCount.collectAsState(initial = 0)
             val activeMemoryCount by viewModel.activeMemoryCount.collectAsState(initial = 0)
 
